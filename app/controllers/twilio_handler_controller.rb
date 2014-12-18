@@ -1,6 +1,7 @@
 class TwilioHandlerController < ApplicationController
 	def receive_message
-		puts params
+		message = params[:message]
+		TwilioMessage.create(message: message)
 	end
 
 	def home
