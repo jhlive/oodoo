@@ -1,6 +1,6 @@
 class TwilioHandlerController < ApplicationController
 	def receive_message
-		message = params[:message]
+		message = params[:Body] || params[:body]
 		TwilioMessage.create(message: message)
 	end
 
