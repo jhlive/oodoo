@@ -1,28 +1,18 @@
-== README
+== TODO
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Get the acutal url return by the tracker
 
-Things you may want to cover:
+* Set Enviroment Variables
 
-* Ruby version
+* General Testing
 
-* System dependencies
+== Enviroment Variables
 
-* Configuration
+* ENV['TWILIO_ASID']
 
-* Database creation
+* ENV['TWILIO_ATOK']
 
-* Database initialization
+* ENV["TWILIO_PHONE_NUMBER"]
 
-* How to run the test suite
+* ENV["APP_TOKEN_ID"]
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.

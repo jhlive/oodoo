@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<% unless @unauthorized %>
+	<Response>
+		<% if @device.is_locked? %>
+			<Message>THE MESSAGE TO REQUEST NEW POSITION</Message>
+		<% end %>
+	</Response>
+<% end %>

@@ -11,13 +11,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141218070942) do
+ActiveRecord::Schema.define(version: 20141220062249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "twilio_messages", force: true do |t|
+  create_table "devices", force: true do |t|
+    t.string   "phone_number"
+    t.string   "alias_name"
+    t.boolean  "lock",         default: false
+    t.boolean  "moving",       default: false
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "positions", force: true do |t|
     t.string   "message"
+    t.float    "lattitude"
+    t.float    "longitude"
+    t.integer  "tracking_route_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tracking_routes", force: true do |t|
+    t.integer  "device_id"
+    t.datetime "started_at"
+    t.datetime "end_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tracking_routes", ["device_id"], name: "index_tracking_routes_on_device_id", using: :btree
+
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "lastname"
+    t.string   "facebook_token"
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
