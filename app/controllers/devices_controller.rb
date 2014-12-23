@@ -77,7 +77,7 @@ class DevicesController < ApplicationController
   end
 
   def track
-    if params[:To] == ENV["TWILIO_PHONE_NUMBER"]
+    if params[:To] == ENV["TWILIO_NUMBER"]
       @device = Device.where(phone_number: params[:From]).first
       if @device.is_locked?
         @device.track_position(params[:Body])
