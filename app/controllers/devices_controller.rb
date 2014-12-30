@@ -71,9 +71,6 @@ class DevicesController < ApplicationController
 
   def tracking_route
     @tracking_route = @device.last_tracking_route || {}
-    respond_to  do |format|
-      format.json { render json: @tracking_route.to_json, status: :ok }
-    end
   end
 
   def track
