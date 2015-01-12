@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
 
 	def current_user
-		@current_user = User.first #(User.where(facebook_token: request.headers["facebook-token"]).first || User.first )
+		@current_user = (User.where(facebook_token: request.headers["facebook-token"]).first || User.first )
 	end
 	helper_method :current_user
 
