@@ -1,12 +1,12 @@
 class DevicesController < ApplicationController
   #before_action :restrict_acces_to_app, except: [:track]
-  before_action :user_signed_in?, except: [:track]
+  #before_action :user_signed_in?, except: [:track]
   before_action :set_device, except: [:index, :create]
 
   # GET /devices
   # GET /devices.json
   def index
-    @devices = current_user.devices
+    @devices = User.first.devices
   end
 
   # GET /devices/1
