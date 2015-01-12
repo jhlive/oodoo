@@ -9,34 +9,34 @@ puts "Seeding database"
 u = User.create(name: "Rene", lastname: "Garcia", email: "rene.garciah90@gmail.com", facebook_token: SecureRandom.hex(16));
 d = Device.create(alias_name: "Device #1", phone_number: "+12069390204")
 track_points = 	[
-	{lattitude: 47.661400, longitude:-122.341642},
-	{lattitude: 47.661372, longitude:-122.339153},
-	{lattitude: 47.661400, longitude:-122.337007},
-	{lattitude: 47.661372, longitude:-122.334089},
-	{lattitude: 47.661458, longitude:-122.334132},
-	{lattitude: 47.661429, longitude:-122.327222},
-	{lattitude: 47.661343, longitude:-122.325162},
-	{lattitude: 47.661372, longitude:-122.323575},
-	{lattitude: 47.661343, longitude:-122.318510},
-	{lattitude: 47.663424, longitude:-122.316408},
-	{lattitude: 47.665909, longitude:-122.316408},
-	{lattitude: 47.668019, longitude:-122.316236},
-	{lattitude: 47.670302, longitude:-122.316279},
-	{lattitude: 47.674637, longitude:-122.315678},
-	{lattitude: 47.680560, longitude:-122.315592},
-	{lattitude: 47.685559, longitude:-122.312073},
-	{lattitude: 47.687003, longitude:-122.311601},
-	{lattitude: 47.688534, longitude:-122.313446},
-	{lattitude: 47.688534, longitude:-122.316579},
-	{lattitude: 47.687292, longitude:-122.317481},
-	{lattitude: 47.686743, longitude:-122.320098}
+	{latitude: 47.661400, longitude:-122.341642},
+	{latitude: 47.661372, longitude:-122.339153},
+	{latitude: 47.661400, longitude:-122.337007},
+	{latitude: 47.661372, longitude:-122.334089},
+	{latitude: 47.661458, longitude:-122.334132},
+	{latitude: 47.661429, longitude:-122.327222},
+	{latitude: 47.661343, longitude:-122.325162},
+	{latitude: 47.661372, longitude:-122.323575},
+	{latitude: 47.661343, longitude:-122.318510},
+	{latitude: 47.663424, longitude:-122.316408},
+	{latitude: 47.665909, longitude:-122.316408},
+	{latitude: 47.668019, longitude:-122.316236},
+	{latitude: 47.670302, longitude:-122.316279},
+	{latitude: 47.674637, longitude:-122.315678},
+	{latitude: 47.680560, longitude:-122.315592},
+	{latitude: 47.685559, longitude:-122.312073},
+	{latitude: 47.687003, longitude:-122.311601},
+	{latitude: 47.688534, longitude:-122.313446},
+	{latitude: 47.688534, longitude:-122.316579},
+	{latitude: 47.687292, longitude:-122.317481},
+	{latitude: 47.686743, longitude:-122.320098}
 ]
 (1..10).each do |i|
 	start = DateTime.now+i.days
 	stop = i < 10 ? start + 2.hours : nil
 	tr = TrackingRoute.create(started_at: start, end_at: stop, device_id: d.id )
 	track_points.each do |point|
-		tr.positions << Position.new(tracking_route_id: tr.id, lattitude: point[:lattitude], longitude: point[:longitude], message: "....")
+		tr.positions << Position.new(tracking_route_id: tr.id, latitude: point[:latitude], longitude: point[:longitude], message: "....")
 	end
 end
 puts "Done!!"

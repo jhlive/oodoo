@@ -10,15 +10,15 @@ class ApplicationController < ActionController::Base
 	helper_method :current_user
 
 	def user_signed_in?
-		#unless current_user.nil?
-		#	render json: {message: "User not authenticated"}, :status=>401
-		#end
+		unless current_user.nil?
+			render json: {message: "User not authenticated"}, :status=>401
+		end
 	end
 
 	def restrict_acces_to_app
-		#unless request.headers["app-token"] == ENV["APP_TOKEN_ID"]
-		#	render json: {message: "APP_TOKEN missing"}, :status=>403
-		#end
+		unless request.headers["app-token"] == ENV["APP_TOKEN_ID"]
+			render json: {message: "APP_TOKEN missing"}, :status=>403
+		end
 	end
 
 end
