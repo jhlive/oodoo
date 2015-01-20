@@ -35,7 +35,7 @@ class Device < ActiveRecord::Base
 	end
 
 	def stop_tracking
-		if self.is_locked
+		if self.is_locked?
     	tracking_route = self.last_tracking_route
     	tracking_route.end_at = DateTime.now
     	tracking_route.save
