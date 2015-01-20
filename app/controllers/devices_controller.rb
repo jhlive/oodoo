@@ -6,7 +6,7 @@ class DevicesController < ApplicationController
   # GET /devices
   # GET /devices.json
   def index
-    @devices = User.first.devices
+    @devices = User.first.devices.order(:alias_name)
   end
 
   # GET /devices/1
