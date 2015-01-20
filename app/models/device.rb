@@ -29,6 +29,7 @@ class Device < ActiveRecord::Base
 			#self.send_position_request
 			return true
 		else
+			puts "Sending Position Request..."
 			return false
 		end
 	end
