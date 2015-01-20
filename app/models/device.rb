@@ -25,7 +25,8 @@ class Device < ActiveRecord::Base
 			self.lock = true
 			self.tracking_routes << TrackingRoute.new(started_at: DateTime.now )
 			self.save
-			self.send_position_request
+			puts "Sending Position Request..."
+			#self.send_position_request
 			return true
 		else
 			return false

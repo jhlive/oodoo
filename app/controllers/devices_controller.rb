@@ -52,6 +52,7 @@ class DevicesController < ApplicationController
   def lock
     respond_to do |format|
       if @device.start_tracking
+        puts "Start Tracking"
         format.json { render json: {message: "The Device has been locked"},status: :ok }
       else
         format.json { render json: {message: "The Device has already been locked"},status: :ok }
@@ -62,6 +63,7 @@ class DevicesController < ApplicationController
   def unlock
     respond_to do |format|
       if @device.stop_tracking
+        puts "Stop Tracking"
         format.json { render json: {message: "The Device has been unlocked"},status: :ok }
       else
         format.json { render json: {message: "The Device has already been unlocked"},status: :ok }
