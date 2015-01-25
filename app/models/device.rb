@@ -50,4 +50,13 @@ class Device < ActiveRecord::Base
 		route = self.last_tracking_route
 		route.positions << Position.build_from_message(message) unless route.nil?
 	end
+
+	def register_device(user)
+		if self.user_id.nil?
+			self.user_id = user.id
+			self.save
+		else
+			return false
+		end
+	end
 end

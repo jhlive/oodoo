@@ -6,7 +6,7 @@ class DevicesController < ApplicationController
   # GET /devices
   # GET /devices.json
   def index
-    @devices = User.first.devices.order(:alias_name)
+    @devices = current_user.devices.order(:alias_name)
   end
 
   # GET /devices/1
@@ -17,13 +17,14 @@ class DevicesController < ApplicationController
   # POST /devices
   # POST /devices.json
   def create
-    @device = Device.new(device_params)
-
+    @device = Device.where(phone_number: params[:device_number]).first    
     respond_to do |format|
-      if @device.save
+      if @device.register_device(current_user)
+        @device.alias_name = params[:alias_name]
+        @device.save
         format.json { render :show, status: :created, location: @device }
       else
-        format.json { render json: @device.errors, status: :unprocessable_entity }
+        format.json { render json: {message: "Sorry, the Device has already been registered"}, status: :ok }
       end
     end
   end
@@ -43,7 +44,8 @@ class DevicesController < ApplicationController
   # DELETE /devices/1
   # DELETE /devices/1.json
   def destroy
-    @device.destroy
+    @device.user_id = nil
+    @device.save
     respond_to do |format|
       format.json { head :no_content }
     end
@@ -91,7 +93,7 @@ class DevicesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_device
-      @device = Device.find(params[:id])
+      @device = current_user.devices.where(id:params[:id]).first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
