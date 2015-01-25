@@ -17,9 +17,11 @@ class DevicesController < ApplicationController
   # POST /devices
   # POST /devices.json
   def create
-    @device = Device.where(phone_number: params[:device_number]).first    
+    @device = Device.where(phone_number: params[:phone_number]).first    
     respond_to do |format|
-      if @device.register_device(current_user)
+      if @device.nil?
+        format.json { render json: {message: "Sorry, the submited device is not registered"}, status: :ok }
+      elsif @device.register_device(current_user)
         @device.alias_name = params[:alias_name]
         @device.save
         format.json { render :show, status: :created, location: @device }
