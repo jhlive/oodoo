@@ -24,7 +24,7 @@ class DevicesController < ApplicationController
       elsif @device.register_device(current_user)
         @device.alias_name = params[:alias_name]
         @device.save
-        format.json { render :show, status: :created, location: @device }
+        format.json { render json: {message: "The submited device was registered succesfully"}, status: :ok }
       else
         format.json { render json: {message: "Sorry, the Device has already been registered"}, status: :ok }
       end
