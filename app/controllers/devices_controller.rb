@@ -17,6 +17,7 @@ class DevicesController < ApplicationController
   # POST /devices
   # POST /devices.json
   def create
+    puts params
     @device = Device.where(phone_number: params[:phone_number]).first    
     respond_to do |format|
       if @device.nil?
