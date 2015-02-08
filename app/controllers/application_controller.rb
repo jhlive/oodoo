@@ -19,6 +19,8 @@ class ApplicationController < ActionController::Base
 	def restrict_acces_to_app
 		unless request.headers["app-token"] == ENV["APP_TOKEN_ID"]
 			render json: {message: "APP_TOKEN missing"}, :status=>403
+		else
+			puts request.headers
 		end
 	end
 
