@@ -12,7 +12,7 @@ class Device < ActiveRecord::Base
 	end
 
 	def last_tracking_route
-		@last_tracking_route ||= self.tracking_routes.includes(:positions).where(end_at: nil).order("started_at desc").first
+		@last_tracking_route ||= self.tracking_routes.includes(:positions).order("started_at desc").first
 	end
 
 	def send_position_request
