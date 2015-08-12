@@ -7,7 +7,10 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 puts "Seeding database"
 u = User.create(name: "Rene", lastname: "Garcia", email: "rene.garciah90@gmail.com", facebook_token: SecureRandom.hex(16));
-d = Device.create(alias_name: "Device #1", phone_number: "+12069390204")
+(1..5).each do |number|
+	d = Device.create(alias_name: "Device ##{number}", phone_number: "+12069390204", user_id: u.id)
+end
+
 track_points = 	[
 	{latitude: 47.661400, longitude:-122.341642},
 	{latitude: 47.661372, longitude:-122.339153},
@@ -31,12 +34,14 @@ track_points = 	[
 	{latitude: 47.687292, longitude:-122.317481},
 	{latitude: 47.686743, longitude:-122.320098}
 ]
-(1..10).each do |i|
-	start = DateTime.now+i.days
-	stop = i < 10 ? start + 2.hours : nil
-	tr = TrackingRoute.create(started_at: start, end_at: stop, device_id: d.id )
-	track_points.each do |point|
-		tr.positions << Position.new(tracking_route_id: tr.id, latitude: point[:latitude], longitude: point[:longitude], message: "....")
+Device.all.each do |device|
+	(1..10).each do |i|
+		start = DateTime.now+i.days
+		stop = i < 10 ? start + 2.hours : nil
+		tr = TrackingRoute.create(started_at: start, end_at: stop, device_id: device.id )
+		track_points.each do |point|
+			tr.positions << Position.new(tracking_route_id: tr.id, latitude: point[:latitude], longitude: point[:longitude], message: "....")
+		end
 	end
 end
 puts "Done!!"
