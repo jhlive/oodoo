@@ -77,6 +77,7 @@ class DevicesController < ApplicationController
   end
 
   def tracking_route
+    @device = Device.where(id: params[:id]).first
     @tracking_route = @device.last_tracking_route || {}
   end
 
