@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :restrict_acces_to_app
+  #before_action :restrict_acces_to_app
   before_action :user_signed_in?, except: [:create]
   def create
   	@current_user = User.sign_up_or_sign_in(user_params)
